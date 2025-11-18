@@ -907,6 +907,7 @@ void Do_OrderSend(CJAVal& req) {
     double takeProfit = GetDefault(req, "tp", (double)NULL);
     int stopLossPoints = GetDefault(req, "sl_points", (int)NULL);
     int takeProfitPoints = GetDefault(req, "tp_points", (int)NULL);
+    int magicNumber = GetDefault(req, "magic_number", 0);
 
     // price & volume normalization
     lots = NormalizeLots(symbol, lots);
@@ -914,7 +915,7 @@ void Do_OrderSend(CJAVal& req) {
     slippage = NormalizePoints(symbol, slippage);
 
     // ECN brokers require order to be opened before sl/tp is specified
-    int ticket = OrderSend(symbol, orderType, lots, price, slippage, 0, 0, comment);
+    int ticket = OrderSend(symbol, orderType, lots, price, slippage, 0, 0, comment, magicNumber);
     if (ticket < 0) {
         sendError(GetLastError(), "Failed to send order.");
         return;
