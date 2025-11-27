@@ -1,3 +1,4 @@
 [submodule "mql-zmq"]
 	path = mql-zmq
-	url = https://github.com/dingmaotu/mql-zmq.git
+	url = https://github.com/danmigdev/mql-zmq.git
+	branch = fix/mql5_compatibility
